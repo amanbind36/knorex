@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-const API_Key = "7a09c00c7811cefa0cdd7f14f4f932bc";
+import "./homepage.css"
+// const API_Key =process.env.REACT_APP_API_Key_Weather
+const API_Key = "7a09c00c7811cefa0cdd7f14f4f932bc" 
 
 const cities = ["Ho Chi Minh", "Singapore", "Kuala Lumpur", "Tokyo", "Athens"];
 const defaultCity = "Ho Chi Minh";
@@ -52,6 +53,7 @@ const HomePage = () => {
 
   return (
     <>
+    <div className="container">
       <div>Weather Application</div>
       <div>
         <label htmlFor="selectCity">Select a City:</label>
@@ -73,26 +75,26 @@ const HomePage = () => {
             onChange={(e) => setDays(Number(e.target.value))}
           />
         </div>
-        <div>
+        <div className="weatherSection">
           <h1>Current Weather in {weatherData.name || "N/A"}</h1>
           {weatherData.main ? (
-            <>
+            <div  className="weatherCard">
               <p>
-                Temperature:{" "}
+                Temperature:
                 {(weatherData.main.temp - 273.15).toFixed(2)}{" "}
                 <span>&deg;</span> C
               </p>
               <p>Weather: {weatherData.weather?.[0]?.description || "N/A"}</p>
-            </>
+            </div>
           ) : (
             <p>Weather data unavailable for {city}</p>
           )}
         </div>
-        <div>
+        <div className="forcastSection">
           <h2>Weather Forecast for {days} Days</h2>
           {forecastData.list?.length > 0 ? (
             forecastData.list.map((data, idx) => (
-              <div key={idx}>
+              <div className="weatherCard" key={idx}>
                 <p>Date: {data.dt_txt}</p>
                 <p>
                   Temperature: {(data.main.temp - 273.15).toFixed(2)}{" "}
@@ -105,6 +107,7 @@ const HomePage = () => {
             <p>No forecast data available</p>
           )}
         </div>
+      </div>
       </div>
     </>
   );
