@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./homepage.css"
-// const API_Key =process.env.REACT_APP_API_Key_Weather
+
 const API_Key = "7a09c00c7811cefa0cdd7f14f4f932bc" 
 
 const cities = ["Ho Chi Minh", "Singapore", "Kuala Lumpur", "Tokyo", "Athens"];
@@ -100,7 +100,7 @@ const HomePage = () => {
                   Temperature: {(data.main.temp - 273.15).toFixed(2)}{" "}
                   <span>&deg;</span> C
                 </p>
-                <p>Weather: {data.weather?.[0]?.description || "N/A"}</p>
+                <p>Weather: {data.weather?.[0]?.description || " "}</p>
               </div>
             ))
           ) : (
